@@ -20,7 +20,7 @@ public class MyFirstProgram {
 
 // Пункт задания 4
 		Point p1 = new Point(0,0 );
-		Point p2 = new Point(3, 4);
+		Point p2 = new Point(-8, 9);
 		System.out.println("Расстояние между двумя точками " + p1.x + ";" + p1.y + " и " + p2.x + ";" + p2.y +
 						" на плостости равно " + p1.distance(p2));
 
