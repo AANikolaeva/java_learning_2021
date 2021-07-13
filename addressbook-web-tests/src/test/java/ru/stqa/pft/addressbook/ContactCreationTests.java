@@ -27,7 +27,7 @@ public class ContactCreationTests {
   @Test
   public void testGroupCreationTests() throws Exception {
     gotoContactCreationPage();
-    fillContactForm(new contactData("Ivan", "Testing", "Omsk, Omskaya st, 42",
+    fillContactForm(new СontactData("Ivan", "Testing", "Omsk, Omskaya st, 42",
             "ivanT@tast.ru", "testing@mail.ru", "test.t@test.ru",
             "23-11-0", "8-56-98-55", "223-456"));
     returnToHomePage();
@@ -37,7 +37,7 @@ public class ContactCreationTests {
     wd.findElement(By.linkText("home page")).click();
   }
 
-  private void fillContactForm(contactData contactData) {
+  private void fillContactForm(СontactData contactData) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
