@@ -25,7 +25,7 @@ public class ContactCreationTests {
   }
 
   @Test
-  public void testGroupCreationTests() throws Exception {
+  public void testGroupCreation() throws Exception {
     gotoContactCreationPage();
     fillContactForm(new СontactData("Ivan", "Testing", "Omsk, Omskaya st, 42",
             "ivanT@tast.ru", "testing@mail.ru", "test.t@test.ru",
