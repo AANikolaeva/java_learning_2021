@@ -12,4 +12,8 @@ public class NavigationHelper extends HeplerBase{
   public void gotoGroupPage() {
     click(By.linkText("groups"));
   }
+
+  public void gotoContactCreationPage() {
+   click(By.linkText("add new"));
+  }
 }

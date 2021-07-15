@@ -12,7 +12,8 @@ public class SessionHelper extends HeplerBase{
   public void login(String username, String password) {
     type(By.name("user"), username);
     type(By.name("pass"), password);
-    click(By.id("LoginForm"));
+    submit(By.id("LoginForm"));
+    //wd.findElement(By.id("LoginForm")).submit();
   }
 
 }
