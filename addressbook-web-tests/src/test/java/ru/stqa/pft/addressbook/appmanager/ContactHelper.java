@@ -10,7 +10,7 @@ public class ContactHelper extends HeplerBase {
     super(wd);
   }
 
-  public void returnToHomePage() { click(By.linkText("home page"));
+  public void returnToHomePage() { click(By.linkText("home"));
   }
 
   public void fillContactForm(СontactData contactData) {
@@ -26,4 +26,14 @@ public class ContactHelper extends HeplerBase {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
+  public void selectContact() { click(By.name("selected[]"));
+  }
+
+  public void deleteSelectedContacts() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
+
+  public void accessAlert() {
+    wd.switchTo().alert().accept();
+  }
 }
