@@ -36,4 +36,7 @@ public class ContactHelper extends HeplerBase {
   public void accessAlert() {
     wd.switchTo().alert().accept();
   }
+
+  public void editContactModification() {click(By.xpath("//img[@alt='Edit']"));
+  }
 }
