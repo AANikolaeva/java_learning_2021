@@ -13,9 +13,6 @@ public class ContactHelper extends HeplerBase {
     super(wd);
   }
 
-  public void returnToHomePage() { click(By.linkText("home"));
-  }
-
   public void fillContactForm(СontactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
