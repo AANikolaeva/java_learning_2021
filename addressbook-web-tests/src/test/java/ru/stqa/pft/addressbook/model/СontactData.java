@@ -10,8 +10,9 @@ public class СontactData {
   private final String phonehome;
   private final String phonemobile;
   private final String phonework;
+  private String group;
 
-  public СontactData(String firstname, String lastname, String address, String email, String email2, String email3, String phonehome, String phonemobile, String phonework) {
+  public СontactData(String firstname, String lastname, String address, String email, String email2, String email3, String phonehome, String phonemobile, String phonework, String group) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.address = address;
@@ -21,6 +22,7 @@ public class СontactData {
     this.phonehome = phonehome;
     this.phonemobile = phonemobile;
     this.phonework = phonework;
+    this.group = group;
   }
 
   public String getFirstname() {
@@ -57,5 +59,9 @@ public class СontactData {
 
   public String getPhonework() {
     return phonework;
+  }
+
+  public String getGroup() {
+    return group;
   }
 }
