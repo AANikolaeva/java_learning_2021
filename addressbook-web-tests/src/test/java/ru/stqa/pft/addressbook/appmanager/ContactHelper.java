@@ -23,13 +23,14 @@ public class ContactHelper extends HeplerBase {
     type(By.name("home"), contactData.getPhonehome());
     type(By.name("mobile"), contactData.getPhonemobile());
     type(By.name("work"), contactData.getPhonework());
-    click(By.xpath("//div[@id='content']/form/input[21]"));
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
+
+    click(By.xpath("//div[@id='content']/form/input[21]"));
 
   }
 
