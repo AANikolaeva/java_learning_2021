@@ -13,6 +13,10 @@ public class ContactHelper extends HeplerBase {
     super(wd);
   }
 
+  public void gotoContactCreationPage() {
+    click(By.linkText("add new"));
+  }
+
   public void fillContactForm(СontactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
@@ -46,5 +50,22 @@ public class ContactHelper extends HeplerBase {
   }
 
   public void editContactModification() {click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void returnToHomePage() {
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
+    click(By.linkText("home"));
+  }
+
+  public void createContact(СontactData сontact, boolean b) {
+    gotoContactCreationPage();
+    fillContactForm(сontact, true);
+    returnToHomePage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }

@@ -25,7 +25,4 @@ public class NavigationHelper extends HeplerBase{
     click(By.linkText("home"));
   }
 
-  public void gotoContactCreationPage() {
-   click(By.linkText("add new"));
-  }
 }
