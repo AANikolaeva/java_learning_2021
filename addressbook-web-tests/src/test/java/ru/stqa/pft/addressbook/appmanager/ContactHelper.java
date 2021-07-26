@@ -38,7 +38,8 @@ public class ContactHelper extends HeplerBase {
 
   }
 
-  public void selectContact() { click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void deleteSelectedContacts() {
@@ -67,5 +68,9 @@ public class ContactHelper extends HeplerBase {
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
   }
 }
