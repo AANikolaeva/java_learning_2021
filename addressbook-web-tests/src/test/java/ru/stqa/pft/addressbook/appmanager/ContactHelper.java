@@ -1,11 +1,14 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import ru.stqa.pft.addressbook.model.СontactData;
+import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HeplerBase {
 
@@ -17,7 +20,7 @@ public class ContactHelper extends HeplerBase {
     click(By.linkText("add new"));
   }
 
-  public void fillContactForm(СontactData contactData, boolean creation) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("address"), contactData.getAddress());
@@ -38,8 +41,8 @@ public class ContactHelper extends HeplerBase {
 
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContact(int indexContact) {
+    wd.findElements(By.name("selected[]")).get(indexContact).click();
   }
 
   public void deleteSelectedContacts() {
@@ -60,7 +63,7 @@ public class ContactHelper extends HeplerBase {
     click(By.linkText("home"));
   }
 
-  public void createContact(СontactData сontact, boolean b) {
+  public void createContact(ContactData сontact, boolean b) {
     gotoContactCreationPage();
     fillContactForm(сontact, true);
     returnToHomePage();
@@ -72,5 +75,19 @@ public class ContactHelper extends HeplerBase {
 
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("tr.entry"));
+    for (WebElement element : elements) {
+      String firstname = element.getText();
+      String lastname = element.getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+      ContactData contact = new ContactData(id, firstname, lastname, null, null,null,null,
+              null,null,null,null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }
