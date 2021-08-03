@@ -27,7 +27,7 @@ public class ContactCreationTests extends TestBase{
     Comparator<? super ContactData> byID = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
     before.sort(byID);
     after.sort(byID);
-    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+    Assert.assertEquals(before, after);
   }
 
 }

@@ -79,11 +79,11 @@ public class ContactHelper extends HeplerBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("tr.entry"));
+    List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
-      String firstname = element.getText();
-      String lastname = element.getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      String firstname = element.findElement(By.xpath("td[3]")).getText();
+      String lastname = element.findElement(By.xpath("td[2]")).getText();
       ContactData contact = new ContactData(id, firstname, lastname, null, null,null,null,
               null,null,null,null);
       contacts.add(contact);
