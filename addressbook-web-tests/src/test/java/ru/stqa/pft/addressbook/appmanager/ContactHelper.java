@@ -100,24 +100,46 @@ public class ContactHelper extends HeplerBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public Set<ContactData> all() {
-    Set<ContactData> contacts = new HashSet<>();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element : elements) {
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      String firstname = element.findElement(By.xpath("td[3]")).getText();
-      String lastname = element.findElement(By.xpath("td[2]")).getText();
-      ContactData contact = new ContactData().withId(id).withFirstname(firstname).withLastname(lastname);
-      contacts.add(contact);
+//  public Contacts all() {
+//    Contacts contacts = new Contacts();
+//    List<WebElement> elements = wd.findElements(By.name("entry"));
+//    for (WebElement element : elements) {
+//      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+//      String firstname = element.findElement(By.xpath("td[3]")).getText();
+//      String lastname = element.findElement(By.xpath("td[2]")).getText();
+//      ContactData contact = new ContactData().withId(id).withFirstname(firstname).withLastname(lastname);
+//      contacts.add(contact);
+//    }
+//    return contacts;
+//  }
+
+  public int count() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
+  private Contacts contactCache = null;
+
+  public Contacts all() {
+    if (contactCache != null) {
+      return new Contacts(contactCache);
     }
-    return contacts;
+    contactCache = new Contacts();
+    List<WebElement> elements = wd.findElements(By.name(("entry")));
+    for (WebElement element : elements) {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      String firstname = cells.get(1).getText();
+      String lastname = cells.get(2).getText();
+      String[] phones = cells.get(5).getText().split("\n");
+      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).withAddress(null)
+              .withEmail(null).withEmail2(null).withEmail3(null)
+              .withPhonehome(phones[0]).withPhonemobile(phones[1]).withPhonework(phones[2]));
+    }
+    return contactCache;
   }
 
   public void clickUpdateContact() {
     click(By.name("update"));
   }
-
-  private Contacts contactCache = null;
-
 
 }
