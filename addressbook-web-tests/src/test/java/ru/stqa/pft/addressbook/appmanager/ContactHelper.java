@@ -9,7 +9,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HeplerBase {
 
@@ -40,8 +42,8 @@ public class ContactHelper extends HeplerBase {
 //    click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void selectContact(int indexContact) {
-    wd.findElements(By.name("selected[]")).get(indexContact).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void deleteSelectedContacts() {
@@ -52,8 +54,8 @@ public class ContactHelper extends HeplerBase {
     wd.switchTo().alert().accept();
   }
 
-  public void editContactModification(int i) {
-    wd.findElements(By.xpath("//img[@alt='Edit']")).get(i).click();
+  public void editContactModification(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
 
   public void clickNewContact() {
@@ -75,15 +77,15 @@ public class ContactHelper extends HeplerBase {
     contactCache = null;
   }
 
-  public void modify(List<ContactData> before, ContactData contact) {
-    editContactModification(before.size() - 1);
+  public void modify(ContactData contact) {
+    editContactModification(contact.getId());
     fillContactForm(contact, false);
     clickUpdateContact();
     homePage();
   }
 
-  public void delete(List<ContactData> before) throws InterruptedException {
-    selectContact(before.size() - 1);
+  public void delete(ContactData contact) throws InterruptedException {
+    selectContactById(contact.getId());
     deleteSelectedContacts();
     accessAlert();
     Thread.sleep(500);
@@ -98,8 +100,8 @@ public class ContactHelper extends HeplerBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
@@ -117,4 +119,5 @@ public class ContactHelper extends HeplerBase {
 
   private Contacts contactCache = null;
 
-  }
+
+}
