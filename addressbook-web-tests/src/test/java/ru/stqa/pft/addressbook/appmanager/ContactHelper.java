@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class ContactHelper extends HeplerBase {
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
-    click(By.xpath("//div[@id='content']/form/input[21]"));
+//    click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
   public void selectContact(int indexContact) {
@@ -55,6 +56,10 @@ public class ContactHelper extends HeplerBase {
     wd.findElements(By.xpath("//img[@alt='Edit']")).get(i).click();
   }
 
+  public void clickNewContact() {
+    click(By.xpath("//div[@id='content']/form/input[21]"));
+  }
+
   public void homePage() {
     if (isElementPresent(By.id("maintable"))) {
       return;
@@ -62,10 +67,12 @@ public class ContactHelper extends HeplerBase {
     click(By.linkText("home"));
   }
 
-  public void create(ContactData сontact, boolean b) {
+  public void create(ContactData сontact, boolean creation) {
     gotoContactCreationPage();
-    fillContactForm(сontact, true);
+    fillContactForm(сontact, creation);
+    clickNewContact();
     homePage();
+    contactCache = null;
   }
 
   public void modify(List<ContactData> before, ContactData contact) {
@@ -98,8 +105,7 @@ public class ContactHelper extends HeplerBase {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String firstname = element.findElement(By.xpath("td[3]")).getText();
       String lastname = element.findElement(By.xpath("td[2]")).getText();
-      ContactData contact = new ContactData(id, firstname, lastname, null, null,null,null,
-              null,null,null,null);
+      ContactData contact = new ContactData().withId(id).withFirstname(firstname).withLastname(lastname);
       contacts.add(contact);
     }
     return contacts;
@@ -108,4 +114,7 @@ public class ContactHelper extends HeplerBase {
   public void clickUpdateContact() {
     click(By.name("update"));
   }
+
+  private Contacts contactCache = null;
+
   }

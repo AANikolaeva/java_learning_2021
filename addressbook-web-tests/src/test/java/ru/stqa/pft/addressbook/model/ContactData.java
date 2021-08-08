@@ -4,45 +4,18 @@ import java.util.Objects;
 
 public class ContactData {
 
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String address;
-  private final String email;
-  private final String email2;
-  private final String email3;
-  private final String phonehome;
-  private final String phonemobile;
-  private final String phonework;
+  private int id = Integer.MAX_VALUE;
+  private String firstname;
+  private String lastname;
+  private String address;
+  private String email;
+  private String email2;
+  private String email3;
+
+  private String phonehome;
+  private String phonemobile;
+  private String phonework;
   private String group;
-
-  public ContactData(int id, String firstname, String lastname, String address, String email, String email2, String email3, String phonehome, String phonemobile, String phonework, String group) {
-    this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.address = address;
-    this.email = email;
-    this.email2 = email2;
-    this.email3 = email3;
-    this.phonehome = phonehome;
-    this.phonemobile = phonemobile;
-    this.phonework = phonework;
-    this.group = group;
-  }
-
-  public ContactData(String firstname, String lastname, String address, String email, String email2, String email3, String phonehome, String phonemobile, String phonework, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.address = address;
-    this.email = email;
-    this.email2 = email2;
-    this.email3 = email3;
-    this.phonehome = phonehome;
-    this.phonemobile = phonemobile;
-    this.phonework = phonework;
-    this.group = group;
-  }
 
   public int getId() {
     return id;
@@ -88,8 +61,59 @@ public class ContactData {
     return group;
   }
 
-  public void setId(int id) {
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
+  }
+
+  public ContactData withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
+  public ContactData withPhonehome(String phonehome) {
+    this.phonehome = phonehome;
+    return this;
+  }
+
+  public ContactData withPhonemobile(String phonemobile) {
+    this.phonemobile = phonemobile;
+    return this;
+  }
+
+  public ContactData withPhonework(String phonework) {
+    this.phonework = phonework;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   @Override
