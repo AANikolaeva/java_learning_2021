@@ -55,17 +55,32 @@ public class ContactHelper extends HeplerBase {
     wd.findElements(By.xpath("//img[@alt='Edit']")).get(i).click();
   }
 
-  public void returnToHomePage() {
+  public void homePage() {
     if (isElementPresent(By.id("maintable"))) {
       return;
     }
     click(By.linkText("home"));
   }
 
-  public void createContact(ContactData сontact, boolean b) {
+  public void create(ContactData сontact, boolean b) {
     gotoContactCreationPage();
     fillContactForm(сontact, true);
-    returnToHomePage();
+    homePage();
+  }
+
+  public void modify(List<ContactData> before, ContactData contact) {
+    editContactModification(before.size() - 1);
+    fillContactForm(contact, false);
+    clickUpdateContact();
+    homePage();
+  }
+
+  public void delete(List<ContactData> before) throws InterruptedException {
+    selectContact(before.size() - 1);
+    deleteSelectedContacts();
+    accessAlert();
+    Thread.sleep(500);
+    homePage();
   }
 
   public boolean isThereAContact() {
@@ -76,7 +91,7 @@ public class ContactHelper extends HeplerBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
@@ -93,4 +108,4 @@ public class ContactHelper extends HeplerBase {
   public void clickUpdateContact() {
     click(By.name("update"));
   }
-}
+  }
