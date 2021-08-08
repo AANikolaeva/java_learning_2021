@@ -36,9 +36,7 @@ public class ContactHelper extends HeplerBase {
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
-
     click(By.xpath("//div[@id='content']/form/input[21]"));
-
   }
 
   public void selectContact(int indexContact) {
@@ -53,7 +51,8 @@ public class ContactHelper extends HeplerBase {
     wd.switchTo().alert().accept();
   }
 
-  public void editContactModification() {click(By.xpath("//img[@alt='Edit']"));
+  public void editContactModification(int i) {
+    wd.findElements(By.xpath("//img[@alt='Edit']")).get(i).click();
   }
 
   public void returnToHomePage() {
@@ -89,5 +88,9 @@ public class ContactHelper extends HeplerBase {
       contacts.add(contact);
     }
     return contacts;
+  }
+
+  public void clickUpdateContact() {
+    click(By.name("update"));
   }
 }
