@@ -81,6 +81,7 @@ public class ContactHelper extends HeplerBase {
     editContactModification(contact.getId());
     fillContactForm(contact, false);
     clickUpdateContact();
+    contactCache = null;
     homePage();
   }
 
@@ -89,6 +90,7 @@ public class ContactHelper extends HeplerBase {
     deleteSelectedContacts();
     accessAlert();
     Thread.sleep(500);
+    contactCache = null;
     homePage();
   }
 
