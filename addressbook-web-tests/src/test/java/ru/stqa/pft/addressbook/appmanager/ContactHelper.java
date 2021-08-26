@@ -130,8 +130,8 @@ public class ContactHelper extends HeplerBase {
     for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      String firstname = cells.get(1).getText();
-      String lastname = cells.get(2).getText();
+      String lastname = cells.get(1).getText();
+      String firstname = cells.get(2).getText();
       String[] phones = cells.get(5).getText().split("\n");
       contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).withAddress(null)
               .withEmail(null).withEmail2(null).withEmail3(null)
