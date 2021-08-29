@@ -79,7 +79,7 @@ public class GroupHelper extends HeplerBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public int getGroupCount() {
+  public int сount() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
