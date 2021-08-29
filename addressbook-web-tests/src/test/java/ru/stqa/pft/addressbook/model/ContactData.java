@@ -11,11 +11,14 @@ public class ContactData {
   private String email;
   private String email2;
   private String email3;
+  private String allmails;
 
   private String phonehome;
   private String phonemobile;
   private String phonework;
   private String allphones;
+
+  private String group;
 
   public String getAllphones() {
     return allphones;
@@ -26,7 +29,14 @@ public class ContactData {
     return this;
   }
 
-  private String group;
+  public String getAllmails() {
+    return allmails;
+  }
+
+  public ContactData withAllmails(String allmails) {
+    this.allmails = allmails;
+    return this;
+  }
 
   public int getId() {
     return id;

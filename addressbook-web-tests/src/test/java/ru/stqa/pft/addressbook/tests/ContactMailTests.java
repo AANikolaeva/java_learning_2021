@@ -2,12 +2,14 @@ package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+
 import java.util.Arrays;
 import java.util.stream.Collectors;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactPhoneTests extends TestBase {
+public class ContactMailTests extends TestBase {
 
   public void ensurePreconditions() {
     app.goTo().homePage();
@@ -19,30 +21,24 @@ public class ContactPhoneTests extends TestBase {
   }
 
   @Test
-  public void testContactPhones() {
+  public void testContactMail() {
     app.goTo().homePage();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-    assertThat(contact.getAllphones(), equalTo(mergePhones(contactInfoFromEditForm)));
+    assertThat(contact.getAllmails(), equalTo(mergeMails(contactInfoFromEditForm)));
   }
 
-  /*склеить номера телефонов в поток и разделить их \
-  map - применить ко всем элементам функцию cleaned
-  метод обратных проверок
-  */
-
-  private String mergePhones(ContactData contact) {
-    return Arrays.asList(contact.getPhonehome(), contact.getPhonemobile(), contact.getPhonework())
+  private String mergeMails(ContactData contact) {
+    return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
             .stream().filter((s) -> !s.equals(""))
-            .map(ContactPhoneTests::cleaned)
+            .map(ContactMailTests::cleaned)
             .collect(Collectors.joining("\n"));
   }
-  // метод для очищения номеров телефонов от "лишних" знаков для проверок
-  // "\\s" - пробельные символы, "-" - тире, "()" - скобки
 
-  public static String cleaned(String phone) {
-    return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+  public static String cleaned(String mail) {
+    return mail.replaceAll("\\s", "").replaceAll("[-()]", "");
 
   }
 }
+
