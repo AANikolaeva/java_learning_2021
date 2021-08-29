@@ -17,7 +17,7 @@ import static org.testng.Assert.assertEquals;
 
 public class ContactCreationTests extends TestBase{
 
-  @Test
+  @Test(enabled = false)
   public void testContactCreation() {
     app.contact().homePage();
     Contacts before = app.contact().all();
