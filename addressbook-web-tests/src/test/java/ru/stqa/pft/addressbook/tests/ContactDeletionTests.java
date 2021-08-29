@@ -14,11 +14,11 @@ public class ContactDeletionTests extends TestBase {
     if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData().withFirstname("Vanutka").withLastname("Test").withAddress("Tara")
               .withEmail("i@test.ru").withEmail2("test@mail.ru").withEmail3("te@test.ru")
-              .withPhonehome("24-00").withPhonemobile("8-56-98-55").withPhonework("223-563").withGroup(null), false);
+              .withPhonehome("2400").withPhonemobile("8565").withPhonework("223").withGroup(null), false);
     }
   }
 
-  @Test(enabled = false)
+  @Test
   public void testContactDeletion() throws InterruptedException {
     Contacts before = app.contact().all();
     ContactData deletedContact = before.iterator().next();
