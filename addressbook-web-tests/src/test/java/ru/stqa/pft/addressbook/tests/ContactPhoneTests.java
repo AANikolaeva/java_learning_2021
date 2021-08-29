@@ -5,7 +5,11 @@ import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactPhoneTests extends TestBase {
@@ -25,14 +29,24 @@ public class ContactPhoneTests extends TestBase {
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-    assertThat(contact.getPhonehome(), equalTo(cleaned(contactInfoFromEditForm.getPhonehome())));
-    assertThat(contact.getPhonemobile(), equalTo(cleaned(contactInfoFromEditForm.getPhonemobile())));
-    assertThat(contact.getPhonework(), equalTo(cleaned(contactInfoFromEditForm.getPhonework())));
+    assertThat(contact.getAllphones(), equalTo(mergePhones(contactInfoFromEditForm)));
+  }
+
+  /*склеить номера телефонов в поток и разделить их \
+  map - применить ко всем элементам функцию cleaned
+  метод обратных проверок
+  */
+
+  private String mergePhones(ContactData contact) {
+    return Arrays.asList(contact.getPhonehome(), contact.getPhonemobile(), contact.getPhonework())
+            .stream().filter((s) -> !s.equals(""))
+            .map(ContactPhoneTests::cleaned)
+            .collect(Collectors.joining("\n"));
   }
   // метод для очищения номеров телефонов от "лишних" знаков для проверок
   // "\\s" - пробельные символы, "-" - тире, "()" - скобки
 
-  public String cleaned(String phone) {
+  public static String cleaned(String phone) {
     return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
 
   }
