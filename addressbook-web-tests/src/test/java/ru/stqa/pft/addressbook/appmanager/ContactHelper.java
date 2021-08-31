@@ -33,6 +33,7 @@ public class ContactHelper extends HeplerBase {
     type(By.name("home"), contactData.getPhonehome());
     type(By.name("mobile"), contactData.getPhonemobile());
     type(By.name("work"), contactData.getPhonework());
+    attach(By.name("photo"), contactData.getPhoto());
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
