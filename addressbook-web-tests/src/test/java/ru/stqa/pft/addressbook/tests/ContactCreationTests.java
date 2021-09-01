@@ -28,7 +28,7 @@ import static org.testng.Assert.assertEquals;
 public class ContactCreationTests extends TestBase{
 
   @DataProvider
-  public Iterator<Object[]> validGroupsFromXml() throws IOException {
+  public Iterator<Object[]> validContactsFromXml() throws IOException {
     try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml.")))) {
       String xml = "";
       String line = reader.readLine();
@@ -59,7 +59,7 @@ public class ContactCreationTests extends TestBase{
     }
   }
 
-  @Test(dataProvider = "validGroupsFromJson")
+  @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) {
     app.contact().homePage();
     Contacts before = app.contact().all();
