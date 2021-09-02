@@ -4,15 +4,27 @@ repositories {
     mavenCentral()
 }
 
-task testGroup (type: Test) {
+task testGroups (type: Test) {
     useTestNG{
         suites 'src/test/resources/testng-groups.xml'
     }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
 }
 
-task testContact (type: Test) {
+task testContacts (type: Test) {
     useTestNG{
-        suites 'src/test/resources/testng-contact.xml'
+        suites 'src/test/resources/testng-contacts.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
     }
 }
 
