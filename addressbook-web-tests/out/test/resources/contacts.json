@@ -5,11 +5,7 @@
     "address": "Omsk 0",
     "email": "te@gmail.com 0",
     "email2": "t@mail.ru 0",
-    "email3": "tet@mail.ru 0",
-    "phonehome": "22-22 0",
-    "phonemobile": "8951-213 0",
-    "phonework": "456-456 0",
-    "photo": {}
+    "email3": "tet@mail.ru 0"
   },
   {
     "firstname": "Ivan 1",
@@ -17,11 +13,7 @@
     "address": "Omsk 1",
     "email": "te@gmail.com 1",
     "email2": "t@mail.ru 1",
-    "email3": "tet@mail.ru 1",
-    "phonehome": "22-22 1",
-    "phonemobile": "8951-213 1",
-    "phonework": "456-456 1",
-    "photo": {}
+    "email3": "tet@mail.ru 1"
   },
   {
     "firstname": "Ivan 2",
@@ -29,10 +21,6 @@
     "address": "Omsk 2",
     "email": "te@gmail.com 2",
     "email2": "t@mail.ru 2",
-    "email3": "tet@mail.ru 2",
-    "phonehome": "22-22 2",
-    "phonemobile": "8951-213 2",
-    "phonework": "456-456 2",
-    "photo": {}
+    "email3": "tet@mail.ru 2"
   }
 ]

@@ -24,11 +24,9 @@ public class ContactData {
   @Expose
   private String email3;
   private String allmails;
-  @Expose
+
   private String phonehome;
-  @Expose
   private String phonemobile;
-  @Expose
   private String phonework;
 
   private String allphones;
