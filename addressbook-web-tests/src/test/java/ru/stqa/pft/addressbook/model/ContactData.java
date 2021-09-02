@@ -32,7 +32,7 @@ public class ContactData {
   private String allphones;
 
   private String group;
-  @Expose
+
   private File photo;
 
   public File getPhoto() {

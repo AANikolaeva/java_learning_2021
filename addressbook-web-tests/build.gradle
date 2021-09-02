@@ -4,8 +4,16 @@ repositories {
     mavenCentral()
 }
 
-test {
-    useTestNG()
+task testGroup (type: Test) {
+    useTestNG{
+        suites 'src/test/resources/testng-groups.xml'
+    }
+}
+
+task testContact (type: Test) {
+    useTestNG{
+        suites 'src/test/resources/testng-contact.xml'
+    }
 }
 
 dependencies {

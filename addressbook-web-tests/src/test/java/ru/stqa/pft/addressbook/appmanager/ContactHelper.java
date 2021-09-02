@@ -40,7 +40,7 @@ public class ContactHelper extends HeplerBase {
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
-//    click(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
   public void selectContactById(int id) {
