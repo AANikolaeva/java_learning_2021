@@ -78,7 +78,7 @@ public class ContactCreationTests extends TestBase{
     Contacts before = app.contact().all();
     ContactData contact = new ContactData().withFirstname("Ivan'").withLastname("Testing").withAddress("Omsk")
             .withEmail("item@test.ru").withEmail2("test2@mail.ru").withEmail3("tete@test.ru")
-            .withPhonehome("2500").withPhonemobile("8565").withPhonework("223").withGroup("test_0");
+            .withPhonehome("2500").withPhonemobile("8565").withPhonework("223");
     app.contact().create(contact, true);
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();

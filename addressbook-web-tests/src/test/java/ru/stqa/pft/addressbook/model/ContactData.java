@@ -5,7 +5,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @XStreamAlias("contact")
 public class ContactData {
@@ -23,6 +25,7 @@ public class ContactData {
   private String email2;
   @Expose
   private String email3;
+
   private String allmails;
 
   private String phonehome;
@@ -34,6 +37,8 @@ public class ContactData {
   private String group;
 
   private File photo;
+
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
   public File getPhoto() {
     return photo;
@@ -102,8 +107,8 @@ public class ContactData {
     return phonework;
   }
 
-  public String getGroup() {
-    return group;
+  public Groups getGroup() {
+    return new Groups(groups);
   }
 
   public ContactData withId(int id) {
