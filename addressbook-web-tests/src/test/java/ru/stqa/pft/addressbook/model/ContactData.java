@@ -38,7 +38,7 @@ public class ContactData {
 
   private File photo;
 
-  private Set<GroupData> groups = new HashSet<GroupData>();
+//  private Set<GroupData> groups = new HashSet<GroupData>();
 
   public File getPhoto() {
     return photo;
@@ -107,8 +107,12 @@ public class ContactData {
     return phonework;
   }
 
-  public Groups getGroup() {
-    return new Groups(groups);
+//  public Groups getGroup() {
+//    return new Groups(groups);
+//  }
+
+  public String getGroup() {
+    return group;
   }
 
   public ContactData withId(int id) {

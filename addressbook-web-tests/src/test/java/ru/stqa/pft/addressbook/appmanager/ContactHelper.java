@@ -35,21 +35,23 @@ public class ContactHelper extends HeplerBase {
     type(By.name("work"), contactData.getPhonework());
     attach(By.name("photo"), contactData.getPhoto());
 
-//    if (creation) {
-//      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-//    } else {
-//      Assert.assertFalse(isElementPresent(By.name("new_group")));
-//    }
-//    click(By.xpath("//div[@id='content']/form/input[21]"));
-
     if (creation) {
-      if (contactData.getGroup().size() > 0) {
-        Assert.assertTrue(contactData.getGroup().size() == 1);
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup().iterator().next().getName());
+      if (contactData.getGroup() != null) {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
       } else {
         Assert.assertFalse(isElementPresent(By.name("new_group")));
       }
     }
+    click(By.xpath("//div[@id='content']/form/input[21]"));
+
+//    if (creation) {
+//      if (contactData.getGroup().size() > 0) {
+//        Assert.assertTrue(contactData.getGroup().size() == 1);
+//        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup().iterator().next().getName());
+//      } else {
+//        Assert.assertFalse(isElementPresent(By.name("new_group")));
+//      }
+//    }
   }
 
   public void selectContactById(int id) {
