@@ -75,6 +75,29 @@ public class ContactHelper extends HeplerBase {
     click(By.linkText("home"));
   }
 
+  private void clickAddGroup() {
+    click(By.xpath("//input[@value='Add to']"));
+  }
+
+  public void selectTypeGroupsInContacts(String text) {
+    click(By.name("group"));
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(text);
+  }
+
+  private void selectAllContact() {
+    click(By.id("MassCB"));
+  }
+
+  public void deleteGroupIsContact() {
+    click(By.name("remove"));
+  }
+
+  public void addGroupInContactById(ContactData contact){
+    selectContactById(contact.getId());
+    clickAddGroup();
+    homePage();
+  }
+
   public void create(ContactData сontact, boolean creation) {
     gotoContactCreationPage();
     fillContactForm(сontact, creation);
@@ -97,6 +120,27 @@ public class ContactHelper extends HeplerBase {
     accessAlert();
     Thread.sleep(500);
     contactCache = null;
+    homePage();
+  }
+
+  public boolean verifyFreeContact() {
+    String text = "[none]";
+    selectTypeGroupsInContacts(text);
+    String number = wd.findElements(By.id("search_count")).get(0).getText();
+    return number.equals("0");
+  }
+
+  public void verifyGroupContact(){
+    String text = "[none]";
+    selectTypeGroupsInContacts(text);
+    selectAllContact();
+    clickAddGroup();
+  }
+
+  public void contactDeleteGroup(ContactData contact, String text) {
+    selectTypeGroupsInContacts(text);
+    selectContactById(contact.getId());
+    deleteGroupIsContact();
     homePage();
   }
 
