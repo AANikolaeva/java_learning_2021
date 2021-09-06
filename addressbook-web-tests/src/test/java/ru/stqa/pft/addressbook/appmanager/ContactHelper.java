@@ -35,14 +35,17 @@ public class ContactHelper extends HeplerBase {
     type(By.name("work"), contactData.getPhonework());
     attach(By.name("photo"), contactData.getPhoto());
 
+    //creation - поле для выбора групп при создании контактов есть (true), а при модификации контактов - нет (false)
+
     if (creation) {
       if (contactData.getGroup() != null) {
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
       } else {
         Assert.assertFalse(isElementPresent(By.name("new_group")));
       }
+//      click(By.xpath("//div[@id='content']/form/input[21]"));
     }
-    click(By.xpath("//div[@id='content']/form/input[21]"));
+
 
 //    if (creation) {
 //      if (contactData.getGroup().size() > 0) {
