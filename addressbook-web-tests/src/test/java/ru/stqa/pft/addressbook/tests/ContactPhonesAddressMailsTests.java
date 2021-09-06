@@ -10,11 +10,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactPhonesAddressMailsTests extends TestBase {
 
   public void ensurePreconditions() {
-    app.goTo().homePage();
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData().withFirstname("Ivan Ivanich").withLastname("Test").withAddress("Tara")
               .withEmail("i@test.ru").withEmail2("test@mail.ru").withEmail3("te@test.ru")
-              .withPhonehome("111").withPhonemobile("222").withPhonework("333").withGroup(null), false);
+              .withPhonehome("2400").withPhonemobile("8565").withPhonework("223").withGroup(null), false);
+      app.goTo().homePage();
     }
   }
 
